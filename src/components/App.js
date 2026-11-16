@@ -15,22 +15,22 @@ const App = () => {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
   const validate = () => {
-    const { name, email, gender, phoneNumber, password } = form;
+  const { name, email, gender, phoneNumber, password } = form;
 
-    if (!name.trim() || !email.trim() || !phoneNumber.trim() || !password.trim())
-      return "All fields are mandatory";
-    if (!/^[a-zA-Z0-9 ]+$/.test(name)) return "Name is not alphanumeric";
-    if (!email.includes("@")) return "Email must contain @";
-    if (!["male", "female", "other"].includes(gender))
-      return "Please identify as male, female or others";
-    if (!/^[0-9]+$/.test(phoneNumber))
-      return "Phone Number must contain only numbers";
-    if (password.length < 6) return "Password must contain atleast 6 letters";
-    return "";
-  };
+  if (!name.trim() || !email.trim() || !gender || !phoneNumber.trim() || !password.trim())
+    return "All fields are mandatory";
 
+
+  if (!/^[a-zA-Z0-9 ]+$/.test(name)) return "Name is not alphanumeric";
+  if (!email.includes("@")) return "Email must contain @";
+  if (!["male", "female", "other"].includes(gender))
+    return "Please identify as male, female or others";
+  if (!/^[0-9]+$/.test(phoneNumber)) return "Phone Number must contain only numbers";
+  if (password.length < 6) return "Password must contain atleast 6 letters";
+
+  return "";
+};
   const handleSubmit = (e) => {
     e.preventDefault();
     const msg = validate();
